@@ -1,6 +1,8 @@
 package com.kv.stepcounter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -43,6 +45,9 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
         stepDetectorView = (TextView)findViewById(R.id.current_steps);
         stepCounterView = (TextView)findViewById(R.id.total_steps);
         stepsBeforeRestartView = (TextView)findViewById(R.id.steps_before_restart);
+
+//        IntentFilter filter = new IntentFilter(Intent.ACTION_SHUTDOWN);
+//        registerReceiver(new ShutDownReceiver(), filter);
     }
 
     @Override

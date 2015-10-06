@@ -8,6 +8,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.util.Log;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -130,13 +131,16 @@ public class StepCounterService extends IntentService implements SensorEventList
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        Log.v("StepCounterLog", "Sensor change event");
         if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER)
         {
+            Log.v("StepCounterLog", "StepCounter start");
             totalStepsBeforeRestart = (int)event.values[0];
             SharedPreferences sharedPref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(STEPS_BEFORE_RESTART, totalStepsBeforeRestart);
             editor.commit();
+            Log.v("StepCounterLog", "StepCounter end");
         }
     }
 
